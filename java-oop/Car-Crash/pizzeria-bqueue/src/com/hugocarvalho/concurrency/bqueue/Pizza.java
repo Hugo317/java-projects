@@ -1,0 +1,23 @@
+package com.hugocarvalho.concurrency.bqueue;
+
+public class Pizza {
+
+    private Topping topping;
+
+    public Pizza(){
+        topping = Topping.values()[(int)(Math.random() * Topping.values().length)];
+    }
+
+    @Override
+    public String toString() {
+        return "A " + topping.name() + " pizza";
+    }
+
+    private enum Topping {
+        PEPPERONI,
+        NOT_PINEAPPLE,
+        MUSHROOM,
+        PEPPERS,
+        EXTRA_CHEESE;
+    }
+}

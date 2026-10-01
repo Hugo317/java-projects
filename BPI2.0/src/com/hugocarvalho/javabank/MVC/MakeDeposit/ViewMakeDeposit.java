@@ -1,0 +1,35 @@
+package com.hugocarvalho.javabank.MVC.MakeDeposit;
+
+import com.sun.xml.internal.ws.api.message.Message;
+import org.academiadecodigo.bootcamp.Prompt;
+import org.academiadecodigo.bootcamp.scanners.integer.IntegerSetInputScanner;
+import com.hugocarvalho.javabank.MVC.Interfaces.Controller;
+import com.hugocarvalho.javabank.MVC.Interfaces.View;
+import com.hugocarvalho.javabank.application.Messages;
+import com.hugocarvalho.javabank.domain.Bank;
+
+import java.util.HashSet;
+
+public class ViewMakeDeposit implements View {
+    private Prompt prompt = new Prompt(System.in, System.out);
+    Bank bank;
+    String allAcc;
+
+    ViewMakeDeposit(Bank bank, String acc) {
+        this.bank = bank;
+        this.allAcc = acc;
+    }
+
+    @Override
+    public int prompt() {
+        System.out.println(Messages.OPEN_ACCOUNTS + allAcc);
+        IntegerSetInputScanner scanner = new IntegerSetInputScanner(bank.getCustomer(bank.getCurrentCustomerId()).getAccountIds());
+        scanner.setMessage(Messages.CHOOSE_ACCOUNT);
+        scanner.setError(Messages.ERROR_INVALID_ACCOUNT);
+
+        return prompt.getUserInput(scanner);
+
+    }
+
+
+}

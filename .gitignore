@@ -1,0 +1,14 @@
+# Compiled output
+*.class
+out/
+build/
+target/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# macOS
+.DS_Store
+__MACOSX/
